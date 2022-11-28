@@ -1,0 +1,374 @@
+\documentclass[12pt,aspectratio=169]{beamer}
+
+\usetheme[progressbar=frametitle, numbering=fraction]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+% Chinese Fonts (Fontset: fandol,ubuntu)
+\usepackage{ctex}
+
+% Math Fonts
+\usefonttheme{professionalfonts} 
+\usepackage{mathspec}
+\setsansfont[BoldFont={Fira Sans},
+Numbers={OldStyle}]{Fira Sans Light}
+\setmathsfont(Digits)[Numbers={Lining, Proportional}]{Fira
+Sans Light}
+
+% Change Color of the theme
+\usepackage{xcolor}
+\definecolor{DarkGrey}{HTML}{353535}
+\definecolor{SUESRed}{RGB}{164,31,53}
+\definecolor{SUESBrown}{RGB}{134,117,77}
+\setbeamercolor{normal text}{ fg= DarkGrey  }
+\setbeamercolor{alerted text}{ fg= SUESRed  }
+\setbeamercolor{example text}{ fg= SUESBrown  }
+
+% Bolder Fonts for presenting in a large room 
+\setsansfont[BoldFont={Fira Sans SemiBold}]{Fira Sans Book}
+
+\title{SUESBeamer模板说明}
+\subtitle{教程说明}
+\date{\today}
+\author{MobtgZhang}
+\institute{上海工程技术大学}
+\titlegraphic{\hfill\includegraphics[height=2.5cm]{SUESlogo.jpg}}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{目录}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents%[hideallsubsections]
+\end{frame}
+
+\section[引言\qquad Introduction]{引言}
+
+\begin{frame}[fragile]{Metropolis主题}
+
+  \themename 主题是Beamer主题，视觉噪音最小，灵感来自\href{https://github.com/hsrmbeamertheme/hsrmbeamertheme}{\textsc{hsrm} Beamer 主题} ，作者是Benjamin Weiss。
+
+  通过加载以下的命令，使用Metropolis主题：
+  
+  \begin{verbatim}    \documentclass{beamer}
+    \usetheme{metropolis}\end{verbatim}
+
+  注意，你必须要拥有Mozilla的 \emph{Fira Sans} 字体，并且安装了XeTeX来体验这种简洁的排版。
+\end{frame}
+\begin{frame}[fragile]{章节}
+  章节对相同主题的幻灯片进行分组处理：
+
+  \begin{verbatim}    \section{Elements}\end{verbatim}
+
+  \themename 为其提供了非常好的进度条指示 \ldots
+  
+\end{frame}
+
+\section[标题格式 \qquad Titleformats]{标题格式}
+
+\begin{frame}{Metropolis 标题格式}
+	\themename 支持四种不同的标题格式：
+	\begin{itemize}
+		\item Regular
+		\item \textsc{Smallcaps}
+		\item \textsc{allsmallcaps}
+		\item ALLCAPS
+	\end{itemize}
+  它们既可以对每个标题样式一次性设置也可以分别设置。
+\end{frame}
+
+\subsection{技巧}
+
+{
+    \metroset{titleformat frame=smallcaps}
+    \begin{frame}{Small caps}
+      这种框架使用 \texttt{smallcaps} 标题格式。
+
+      \begin{alertblock}{潜在的问题}
+        
+        请注意，并不是每个字体支持small caps。如果您使用pdfTeX和Computer Modern Sans Serif字体对演示文稿进行排版，则小写的文本将改用Computer Modern Serif字体进行排版。
+      
+      \end{alertblock}
+    \end{frame}
+}
+
+{
+\metroset{titleformat frame=allsmallcaps}
+\begin{frame}{All small caps}
+	这个框架使用\texttt{allsmallcaps}标题格式。
+
+	\begin{alertblock}{潜在的问题}
+    由于此标题格式也使用allsmallcaps，因此您面临与\texttt{smallcaps}标题格式相同的问题。此外，这种格式可能会导致一些其他问题。如果考虑使用它，请参阅文档。
+
+    从经验上来看，只需将其用于纯文本标题。
+	\end{alertblock}
+\end{frame}
+}
+
+{
+\metroset{titleformat frame=allcaps}
+\begin{frame}{All caps}
+	此框架使用 \texttt{allcaps} 标题格式。
+
+	\begin{alertblock}{潜在的问题}
+    这种标题格式不像\texttt{allsmallcaps}格式那样有问题，但基本上也有相同的缺陷。因此，如果您想使用它，请查看文档。
+	\end{alertblock}
+\end{frame}
+}
+
+\section[元素\qquad Elements]{元素}
+
+\begin{frame}[fragile]{印刷体}
+      \begin{verbatim}
+      
+        主题为\emph{强调}文本提供了合理的默认值，
+          
+          \alert{强调}部分或显示\textbf{粗体}结果。
+      
+        \end{verbatim}
+
+  \begin{center}变成以下的格式\end{center}
+
+  主题为\emph{强调}文本提供了合理的默认值，\alert{强调}部分或显示\textbf{粗体}结果。
+  
+\end{frame}
+
+\begin{frame}{字体样式测试}
+  \begin{itemize}
+    \item 正常体
+    \item \textit{斜体}
+    \item \textsc{SmallCaps}
+    \item \textbf{加粗}
+    \item \textbf{\textit{斜体加粗}}
+    \item \textbf{\textsc{粗体 SmallCaps}}
+    \item \texttt{Monospace}
+    \item \texttt{\textit{Monospace 斜体}}
+    \item \texttt{\textbf{Monospace 加粗}}
+    \item \texttt{\textbf{\textit{Monospace 加粗斜体}}}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{列表}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.33\textwidth}
+      列表 Items
+      \begin{itemize}
+        \item Milk \item Eggs \item Potatos
+      \end{itemize}
+
+    \column{0.33\textwidth}
+      枚举 Enumerations
+      \begin{enumerate}
+        \item First, \item Second and \item Last.
+      \end{enumerate}
+
+    \column{0.33\textwidth}
+      描述 Descriptions
+      \begin{description}
+        \item[PowerPoint] Meeh. \item[Beamer] Yeeeha.
+      \end{description}
+  \end{columns}
+\end{frame}
+\begin{frame}{动画}
+  \begin{itemize}[<+- | alert@+>]
+    \item \alert<4>{这个\only<4>{ 真的} 重要}
+    \item 现在是这个
+    \item 然后现在是这个
+  \end{itemize}
+\end{frame}
+\begin{frame}{Figures}
+  \begin{figure}
+    \newcounter{density}
+    \setcounter{density}{20}
+    \begin{tikzpicture}
+      \def\couleur{alerted text.fg}
+      \path[coordinate] (0,0)  coordinate(A)
+                  ++( 90:5cm) coordinate(B)
+                  ++(0:5cm) coordinate(C)
+                  ++(-90:5cm) coordinate(D);
+      \draw[fill=\couleur!\thedensity] (A) -- (B) -- (C) --(D) -- cycle;
+      \foreach \x in {1,...,40}{%
+          \pgfmathsetcounter{density}{\thedensity+20}
+          \setcounter{density}{\thedensity}
+          \path[coordinate] coordinate(X) at (A){};
+          \path[coordinate] (A) -- (B) coordinate[pos=.10](A)
+                              -- (C) coordinate[pos=.10](B)
+                              -- (D) coordinate[pos=.10](C)
+                              -- (X) coordinate[pos=.10](D);
+          \draw[fill=\couleur!\thedensity] (A)--(B)--(C)-- (D) -- cycle;
+      }
+    \end{tikzpicture}
+    \caption{来自\href{http://www.texample.net/tikz/examples/rotated-polygons/}{texample.net}网站提供的旋转正方形。}
+  \end{figure}
+\end{frame}
+\begin{frame}{表格}
+  \begin{table}
+    \caption{世界上最大的城市（来源：Wikipedia）}
+    \begin{tabular}{lr}
+      \toprule
+      城市 & 人口\\
+      \midrule
+      墨西哥城 & 20,116,842\\
+      上海 & 19,210,000\\
+      北京 & 15,796,450\\
+      伊斯坦布尔 & 14,160,467\\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+\begin{frame}{模块}
+  预定义了三种不同的块环境，可以使用可选背景色。
+
+  \begin{columns}[T,onlytextwidth]
+    \column{0.5\textwidth}
+      \begin{block}{默认}
+        这是默认的模块
+      \end{block}
+
+      \begin{alertblock}{提醒}
+        这是提醒模块
+      \end{alertblock}
+
+      \begin{exampleblock}{例子}
+        这是例子模块
+      \end{exampleblock}
+
+    \column{0.5\textwidth}
+
+      \metroset{block=fill}
+
+      \begin{block}{默认}
+        默认的文本块
+      \end{block}
+
+      \begin{alertblock}{提醒}
+        提醒的文本块
+      \end{alertblock}
+
+      \begin{exampleblock}{例子}
+        例子文本块
+      \end{exampleblock}
+
+  \end{columns}
+\end{frame}
+\begin{frame}{数学公式}
+    \metroset{block=fill}
+    \begin{theorem}
+    微积分基本公式：$\int_a^b f(x)\mathrm{d}x=F(b)-F(a)$。
+    \end{theorem}
+    \begin{proof}
+    令 $g(x)=e^x-x-1$。则当 $x>1$ 时， 有 $g'(x)=e^x-1>0$，
+    因此 $g(x)>g(1)=0$。即有 $x>1$ 时 $e^x>1+x$。
+    \end{proof}
+  \begin{equation*}
+    e = \lim_{n\to \infty} \left(1 + \frac{1}{n}\right)^n
+  \end{equation*}
+\end{frame}
+\begin{frame}{折线图}
+  \begin{figure}
+    \begin{tikzpicture}
+      \begin{axis}[
+        mlineplot,
+        width=0.9\textwidth,
+        height=6cm,
+      ]
+
+        \addplot {sin(deg(x))};
+        \addplot+[samples=100] {sin(deg(2*x))};
+
+      \end{axis}
+    \end{tikzpicture}
+    \caption{这是一个折线图}
+  \end{figure}
+\end{frame}
+\begin{frame}{条形图}
+  \begin{figure}
+    \begin{tikzpicture}
+      \begin{axis}[
+        mbarplot,
+        xlabel={不同区间分布},
+        ylabel={数据量个数},
+        width=0.9\textwidth,
+        height=6cm,
+      ]
+
+      \addplot plot coordinates {(1, 20) (2, 25) (3, 22.4) (4, 12.4)};
+      \addplot plot coordinates {(1, 18) (2, 24) (3, 23.5) (4, 13.2)};
+      \addplot plot coordinates {(1, 10) (2, 19) (3, 25) (4, 15.2)};
+
+      \legend{lorem, ipsum, dolor}
+
+      \end{axis}
+    \end{tikzpicture}
+    \caption{这是一个示例的统计图}
+  \end{figure}
+\end{frame}
+\begin{frame}{引用}
+  \begin{quote}
+    这里是一个引用标签，可以使用引用的方式来表示一些内容。
+  \end{quote}
+\end{frame}
+
+{%
+\setbeamertemplate{框架页脚}{我的自定义页脚}
+\begin{frame}[fragile]{框架页脚}
+    \themename defines a custom beamer template to add a text to the footer. It can be set via
+    \themename 定义了自定义beamer模板以向页脚添加文本。它可以通过
+    \begin{verbatim}\setbeamertemplate{框架页脚}{我的自定义页脚}\end{verbatim}
+
+    来定义页脚。
+\end{frame}
+}
+
+\begin{frame}{参考文献}
+  对showcase的一些引用 [allowframebreaks] \cite{knuth92,ConcreteMath,Simpson,Er01,greenwade93}
+\end{frame}
+
+\section{结论}
+
+\begin{frame}{总结}
+
+  可以通过以下的方式获取此主题和演示文稿的来源。
+
+  \begin{center}\url{https://github.com/MobtgZhang/beamer-ppts}\end{center}
+
+  此模板来源于\href{https://github.com/matze/mtheme}{mtheme}
+
+  \begin{center}\ccbysa\end{center}
+
+\end{frame}
+
+{\setbeamercolor{palette primary}{fg=black, bg=yellow}
+\begin{frame}[standout]
+  问题提问?
+\end{frame}
+}
+
+\appendix
+
+\begin{frame}[fragile]{备用页面}
+  有时，参考听众提问过程中，可以在演示结束部分添加幻灯片。
+
+  这个最好的做法是在备用页面之前将\verb|appendixnumberbeamer|
+  包含在你的序言中并且调用\verb|\appendix|。
+
+  \themename 将自动关闭幻灯片编号和进度条附录中的幻灯片。
+\end{frame}
+
+\begin{frame}[allowframebreaks]{参考文献}
+
+  \bibliography{slide}
+  \bibliographystyle{abbrv}
+
+\end{frame}
+
+\end{document}
